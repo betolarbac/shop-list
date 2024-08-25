@@ -8,7 +8,7 @@ export type DashboardSidebarGenericProps<T = unknown> = {
 
 export function DashboardSidebar({ children, className }: DashboardSidebarGenericProps) {
   return (
-    <aside className={cn(['border-r border-border flex flex-col space-y-6 border-[#252529]', className])}>
+    <aside className={cn(['border-r border-border flex flex-col border-[#252529]', className])}>
       {children}
     </aside>
   )
@@ -32,7 +32,7 @@ export function DashboardSidebarHeaderTitle({children, className}: DashboardSide
 
 export function DashboardSidebarMain({children, className}: DashboardSidebarGenericProps) {
   return (
-    <main className={cn(['px-3', className])}>
+    <main className={cn(['px-3 mt-6', className])}>
       {children}
     </main>
   )
@@ -86,7 +86,7 @@ export function DashboardSidebarNavLink({children, className, href, active}: Das
 
 export function DashboardSidebarFooter({children, className}: DashboardSidebarGenericProps) {
   return (
-    <footer className={cn(['p-6 mt-auto', className])}>
+    <footer className={cn(['px-6 py-4 border-t border-border border-[#252529] ', className])}>
       {children}
     </footer>
   )
