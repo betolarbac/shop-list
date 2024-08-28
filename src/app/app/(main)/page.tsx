@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useAuth } from "@clerk/nextjs";
 import { PlusIcon } from "@radix-ui/react-icons";
 import { useEffect } from "react";
-import { ProductTable } from "../_components/product-tablet";
+import { ProductTable } from "./_components/product-tablet";
 export default function Page() {
   const { isSignedIn } = useAuth();
 
