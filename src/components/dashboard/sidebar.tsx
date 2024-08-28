@@ -64,7 +64,7 @@ export function DashboardSidebarNavHeaderTitle({children, className}: DashboardS
 
 export function DashboardSidebarNavMain({children, className}: DashboardSidebarGenericProps) {
   return (
-    <main className={cn(['flex flex-col', className])}>
+    <main className={cn(['flex flex-col gap-2', className])}>
       {children}
     </main>
   )
