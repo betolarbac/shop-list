@@ -4,7 +4,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 export function UserInfo() {
   const { user } = useUser();
 
-  console.log("usuario", user);
 
   return (
     <div className="flex gap-3 items-center">
