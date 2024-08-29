@@ -4,6 +4,7 @@ import { useAuth } from "@clerk/nextjs";
 import { PlusIcon } from "@radix-ui/react-icons";
 import { useEffect } from "react";
 import { ProductTable } from "./_components/product-tablet";
+import { ProductUpsertDialog } from "./_components/product-upsert-dialog";
 export default function Page() {
   const { isSignedIn } = useAuth();
 
@@ -24,10 +25,7 @@ export default function Page() {
               Lista de Compras
             </h3>
 
-            <Button className="bg-[#7450AC] hover:bg-[#7450AC]">
-              <PlusIcon className="w-4 h-4 mr-3" />
-              Adicionar produto
-            </Button>
+            <ProductUpsertDialog />
           </div>
 
           <div className="mx-auto max-w-5xl px-6">
