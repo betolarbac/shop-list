@@ -1,11 +1,7 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import {
-  CaretSortIcon,
-  ChevronDownIcon,
-  DotsHorizontalIcon,
-} from "@radix-ui/react-icons"
+import * as React from "react";
+
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -17,20 +13,9 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-} from "@tanstack/react-table"
+} from "@tanstack/react-table";
 
-import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -38,150 +23,56 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
+} from "@/components/ui/table";
+import { Product } from "../types";
 
-const data: Payment[] = [
-  {
-    id: "m5gr84i9",
-    total: 316,
-    name: "Arroz",
-    unidade: 1,
-  },
-  {
-    id: "3u1reuv4",
-    total: 242,
-    name: "Arroz",
-    unidade: 1,
-  },
-  {
-    id: "derv1ws0",
-    total: 837,
-    name: "Arroz",
-    unidade: 1,
-  },
-  {
-    id: "5kma53ae",
-    total: 874,
-    name: "Arroz",
-    unidade: 1,
-  },
-  {
-    id: "bhqecj4p",
-    name: "Arroz",
-    unidade: 1,
-    total: 721,
-  },
-  {
-    id: "bhqecj4p",
-    total: 721,
-    name: "Arroz",
-    unidade: 1,
-  },
-  {
-    id: "bhqecj4p",
-    total: 721,
-    name: "Arroz",
-    unidade: 1,
-  },
-  {
-    id: "bhqecj4p",
-    total: 721,
-    name: "Arroz",
-    unidade: 1,
-  },
-  {
-    id: "bhqecj4p",
-    total: 721,
-    name: "Arroz",
-    unidade: 1,
-  },
-  {
-    id: "bhqecj4p",
-    total: 721,
-    name: "Arroz",
-    unidade: 1,
-  },
-  {
-    id: "bhqecj4p",
-    total: 721,
-    name: "Arroz",
-    unidade: 1,
-  },
-  {
-    id: "bhqecj4p",
-    total: 721,
-    name: "Arroz",
-    unidade: 1,
-  },
-  {
-    id: "bhqecj4p",
-    total: 721,
-    name: "Arroz",
-    unidade: 1,
-  },
-  {
-    id: "bhqecj4p",
-    total: 721,
-    name: "Arroz",
-    unidade: 1,
-  },
-  {
-    id: "bhqecj4p",
-    total: 721,
-    name: "Arroz",
-    unidade: 1,
-  },
-]
 
-export type Payment = {
-  id: string
-  name: string
-  unidade: number
-  total: number
-}
+type ProductTable = {
+  data: Product[];
+};
 
-export const columns: ColumnDef<Payment>[] = [
-
-  {
-    accessorKey: "name",
-    header: "Name",
-    cell: ({ row }) => (
-      <div className="capitalize ">{row.getValue("name")}</div>
-    ),
-  },
-  {
-    accessorKey: "unidade",
-    header: "Unidade",
-    cell: ({ row }) => (
-      <div className="capitalize ">{row.getValue("unidade")}</div>
-    ),
-  },
-  {
-    accessorKey: "total",
-    header: () => <div className="text-right">Total</div>,
-    cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("total"))
-
-      // Format the amount as a dollar amount
-      const formatted = new Intl.NumberFormat("pt-BR", {
-        style: "currency",
-        currency: "BRL", 
-      }).format(amount)
-
-      return <div className="text-right font-medium">{formatted}</div>
-    },
-  },
-  
-]
-
-export function ProductTable() {
-  const [sorting, setSorting] = React.useState<SortingState>([])
+export function ProductTable({data}: ProductTable) {
+  const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
-  )
+  );
   const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({})
-  const [rowSelection, setRowSelection] = React.useState({})
+    React.useState<VisibilityState>({});
+  const [rowSelection, setRowSelection] = React.useState({});
+
+  const columns: ColumnDef<Product>[] = [
+    {
+      accessorKey: "title",
+      header: "Name",
+      cell: ({ row }) => (
+        <div className="capitalize ">{row.getValue("title")}</div>
+      ),
+    },
+    {
+      accessorKey: "amount",
+      header: "Unidade",
+      cell: ({ row }) => (
+        <div className="capitalize ">{row.getValue("amount")}</div>
+      ),
+    },
+    {
+      accessorKey: "value",
+      header: () => <div className="text-right">Total</div>,
+      cell: ({ row }) => {
+        const amount: number = row.getValue("amount");;
+        const value: number = row.getValue("value");
+        const total = value * amount;
+
+        // Format the amount as a dollar amount
+        const formatted = new Intl.NumberFormat("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        }).format(total);
+
+        return <div className="text-right font-medium">{formatted}</div>;
+      },
+    },
+  ];
 
   const table = useReactTable({
     data,
@@ -200,12 +91,11 @@ export function ProductTable() {
       columnVisibility,
       rowSelection,
     },
-  })
+  });
 
   return (
     <div className="w-full">
- 
-      <div >
+      <div>
         <Table>
           <TableHeader className="h-8 rounded-md bg-[#ddeaf814]">
             {table.getHeaderGroups().map((headerGroup) => (
@@ -220,7 +110,7 @@ export function ProductTable() {
                             header.getContext()
                           )}
                     </TableHead>
-                  )
+                  );
                 })}
               </TableRow>
             ))}
@@ -270,7 +160,7 @@ export function ProductTable() {
             Previous
           </Button>
           <Button
-           className="bg-[#7450AC] hover:bg-[#7450AC]"
+            className="bg-[#7450AC] hover:bg-[#7450AC]"
             size="sm"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
@@ -280,5 +170,5 @@ export function ProductTable() {
         </div>
       </div>
     </div>
-  )
+  );
 }

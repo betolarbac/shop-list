@@ -1,20 +1,10 @@
-"use client";
-import { Button } from "@/components/ui/button";
-import { useAuth } from "@clerk/nextjs";
-import { PlusIcon } from "@radix-ui/react-icons";
-import { useEffect } from "react";
 import { ProductTable } from "./_components/product-tablet";
 import { ProductUpsertDialog } from "./_components/product-upsert-dialog";
-export default function Page() {
-  const { isSignedIn } = useAuth();
+import { getProducts } from "./actions";
+export default async function Page() {
 
-  useEffect(() => {
-    if (isSignedIn) {
-      fetch("/api/create-user", {
-        method: "POST",
-      });
-    }
-  }, [isSignedIn]);
+  const  products = await getProducts();
+
 
   return (
     <>
@@ -29,7 +19,7 @@ export default function Page() {
           </div>
 
           <div className="mx-auto max-w-5xl px-6">
-            <ProductTable />
+          <ProductTable  data={products}/>
           </div>
         </div>
       </div>
