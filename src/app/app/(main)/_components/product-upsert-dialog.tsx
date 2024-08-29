@@ -34,17 +34,17 @@ export function ProductUpsertDialog() {
             <Input id="name" placeholder="Item" className="col-span-3" />
           </div>
           <div className="flex flex-col items-start gap-4">
-            <Label htmlFor="username" className="text-right">
+            <Label htmlFor="quantidade" className="text-right">
               Quantidade
             </Label>
-            <Input id="username" placeholder="Quantidade"  className="col-span-3" />
+            <Input id="quantidade" placeholder="Quantidade"  className="col-span-3" />
           </div>
 
           <div className="flex flex-col items-start gap-4">
-            <Label htmlFor="username" className="text-right">
+            <Label htmlFor="valor" className="text-right">
               Valor
             </Label>
-            <Input id="username" placeholder="Valor"  className="col-span-3" />
+            <Input id="valor" placeholder="Valor"  className="col-span-3" />
           </div>
         </div>
         <DialogFooter>
