@@ -1,9 +1,10 @@
+import { Product } from './types';
 "use server";
 
 import { prisma } from "@/services/database/prisma";
 import { auth } from "@clerk/nextjs/server";
 import { z } from "zod";
-import { upsertProductSchema } from "./schema";
+import { deleteProductSchema, upsertProductSchema } from "./schema";
 
 export async function getProducts() {
   const { userId }: { userId: string | null } = auth();
@@ -44,4 +45,39 @@ export async function upsertProduct(input: z.infer<typeof upsertProductSchema>) 
   });
 
   return product;
+}
+
+export async function deleteProduct(input: z.infer<typeof deleteProductSchema>) {
+  const { userId } = auth();
+  
+  if (!userId) {
+    throw new Error("Usuário não autenticado");
+  }
+
+  const Product = await prisma.products.findUnique({
+    where: {
+      id: input.id,
+      userId,
+
+    },
+    select: {
+      id: true,
+    }
+  })
+
+  if (!Product) {
+    throw new Error("Produto não encontrado");
+  }
+
+  await prisma.products.delete({
+    where: {
+      id: input.id,
+      userId,
+    }
+  })
+
+  return {
+    error: null,
+    data: "Product deleted successfully",
+  }
 }

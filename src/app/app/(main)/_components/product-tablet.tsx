@@ -9,8 +9,6 @@ import {
   VisibilityState,
   flexRender,
   getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
@@ -25,14 +23,18 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Product } from "../types";
-import { TrashIcon } from "@radix-ui/react-icons";
-
+import { ReloadIcon, TrashIcon } from "@radix-ui/react-icons";
+import { deleteProduct } from "../actions";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 type ProductTable = {
   data: Product[];
 };
 
-export function ProductTable({data}: ProductTable) {
+export function ProductTable({ data }: ProductTable) {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -40,6 +42,18 @@ export function ProductTable({data}: ProductTable) {
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
+
+  const handleDeleteProduct = async (product: Product) => {
+    try {
+      setLoading(true);
+      await deleteProduct({ id: product.id });
+      router.refresh();
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const columns: ColumnDef<Product>[] = [
     {
@@ -60,7 +74,7 @@ export function ProductTable({data}: ProductTable) {
       accessorKey: "value",
       header: () => <div className="text-right">Total</div>,
       cell: ({ row }) => {
-        const amount: number = row.getValue("amount");;
+        const amount: number = row.getValue("amount");
         const value: number = row.getValue("value");
         const total = value * amount;
 
@@ -76,7 +90,22 @@ export function ProductTable({data}: ProductTable) {
     {
       id: "actions",
       enableHiding: false,
-      cell: ( ) =>  <Button className="bg-transparent hover:bg-transparent"><TrashIcon className="text-[#ff6465eb] w-5 h-5" /></Button>
+      cell: ({ row }) => {
+        const product = row.original;
+        return (
+          <Button
+            className="bg-transparent hover:bg-transparent"
+            onClick={() => handleDeleteProduct(product)}
+            disabled={loading}
+          >
+            {loading ? (
+              <ReloadIcon className="text-[#ff6465eb] w-4 h-4 mr-2 animate-spin" />
+            ) : (
+              <TrashIcon className="text-[#ff6465eb] w-5 h-5" />
+            )}
+          </Button>
+        );
+      },
     },
   ];
 
@@ -86,9 +115,7 @@ export function ProductTable({data}: ProductTable) {
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
     onRowSelectionChange: setRowSelection,
     state: {
@@ -152,10 +179,6 @@ export function ProductTable({data}: ProductTable) {
         </Table>
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
-        <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of{" "}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
-        </div>
         <div className="space-x-2">
           <Button
             className="bg-[#7450AC] hover:bg-[#7450AC]"
