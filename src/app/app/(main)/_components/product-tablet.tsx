@@ -25,6 +25,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Product } from "../types";
+import { TrashIcon } from "@radix-ui/react-icons";
 
 
 type ProductTable = {
@@ -71,6 +72,11 @@ export function ProductTable({data}: ProductTable) {
 
         return <div className="text-right font-medium">{formatted}</div>;
       },
+    },
+    {
+      id: "actions",
+      enableHiding: false,
+      cell: ( ) =>  <Button className="bg-transparent hover:bg-transparent"><TrashIcon className="text-[#ff6465eb] w-5 h-5" /></Button>
     },
   ];
 
