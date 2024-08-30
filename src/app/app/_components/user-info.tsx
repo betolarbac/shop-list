@@ -1,9 +1,19 @@
-import { useUser } from "@clerk/nextjs";
+import { useAuth, useUser } from "@clerk/nextjs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useEffect } from "react";
 
 export function UserInfo() {
   const { user, isLoaded } = useUser();
+  const { isSignedIn } = useAuth();
+
+  useEffect(() => {
+    if (isSignedIn) {
+      fetch("/api/create-user", {
+        method: "POST",
+      });
+    }
+  }, [isSignedIn]);
 
   return (
     <>
