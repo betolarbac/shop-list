@@ -77,7 +77,7 @@ type DashboardSidebarNavLinkProps = {
 
 export function DashboardSidebarNavLink({children, className, href, active}: DashboardSidebarGenericProps<DashboardSidebarNavLinkProps>) {
   return (
-    <Link href={href} className={cn(['flex items-center text-sm px-3 py-2 rounded-md font-medium', active && 'bg-[#7450AC]', className])}>
+    <Link href={href} className={cn(['flex items-center text-sm px-3 py-2 rounded-md font-medium text-slate-11 delay-75 hover:bg-[#d3edf81d] hover:text-slate-12', active && 'bg-[#ddeaf814] hover:bg-[#ddeaf814] text-slate-12', className])}>
       {children}
     </Link>
   )
@@ -86,7 +86,7 @@ export function DashboardSidebarNavLink({children, className, href, active}: Das
 
 export function DashboardSidebarFooter({children, className}: DashboardSidebarGenericProps) {
   return (
-    <footer className={cn(['px-6 py-4 border-t border-border border-[#252529] ', className])}>
+    <footer className={cn(['py-2 px-3 border-t border-border border-[#252529] ', className])}>
       {children}
     </footer>
   )
