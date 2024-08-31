@@ -12,6 +12,7 @@ import {
 import { usePathname } from "next/navigation";
 import { UserInfo } from "./user-info";
 import { ShoppingBasket, CalendarDays } from "lucide-react";
+import { Logo } from "@/components/logo";
 
 export function MainSidebar() {
   const pathname = usePathname();
@@ -22,7 +23,7 @@ export function MainSidebar() {
 
   return (
     <DashboardSidebar>
-      <DashboardSidebarHeader>Logo</DashboardSidebarHeader>
+      <DashboardSidebarHeader><Logo /></DashboardSidebarHeader>
       <DashboardSidebarMain className="flex flex-col flex-grow">
         <DashboardSidebarNav>
           <DashboardSidebarNavMain>
