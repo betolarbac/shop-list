@@ -18,7 +18,7 @@ import {
   FormLabel,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { PlusIcon, ReloadIcon } from "@radix-ui/react-icons";
+import { Plus, LoaderCircle } from 'lucide-react';
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { upsertProductSchema } from "../schema";
@@ -61,7 +61,7 @@ export function ProductUpsertDialog() {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button className="bg-[#7450AC] hover:bg-[#7450AC]">
-          <PlusIcon className="w-4 h-4 mr-3" />
+          <Plus className="w-4 h-4 mr-3"/>
           Adicionar produto
         </Button>
       </DialogTrigger>
@@ -117,7 +117,7 @@ export function ProductUpsertDialog() {
               <Button type="submit" disabled={loading}>
                 {loading ? (
                   <>
-                    <ReloadIcon className="w-4 h-4 mr-2 animate-spin" />
+                    <LoaderCircle className="w-4 h-4 mr-2 animate-spin"/>
                     Salvando
                   </>
                 ) : (

@@ -23,7 +23,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Product } from "../types";
-import { ReloadIcon, TrashIcon } from "@radix-ui/react-icons";
+import { Trash2, LoaderCircle  } from 'lucide-react';
 import { deleteProduct } from "../actions";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -99,9 +99,9 @@ export function ProductTable({ data }: ProductTable) {
             disabled={loading}
           >
             {loading ? (
-              <ReloadIcon className="text-[#ff6465eb] w-4 h-4 mr-2 animate-spin" />
+              <LoaderCircle className="text-[#ff6465eb] w-4 h-4 mr-2 animate-spin" />
             ) : (
-              <TrashIcon className="text-[#ff6465eb] w-5 h-5" />
+              <Trash2 className="text-[#ff6465eb] w-5 h-5" />
             )}
           </Button>
         );
