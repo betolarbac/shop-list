@@ -11,6 +11,7 @@ import {
   getCoreRowModel,
   getSortedRowModel,
   useReactTable,
+  getPaginationRowModel
 } from "@tanstack/react-table";
 
 import { Button } from "@/components/ui/button";
@@ -23,7 +24,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Product } from "../types";
-import { Trash2, LoaderCircle  } from 'lucide-react';
+import { Trash2, LoaderCircle } from "lucide-react";
 import { deleteProduct } from "../actions";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -118,6 +119,7 @@ export function ProductTable({ data }: ProductTable) {
     getSortedRowModel: getSortedRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
     onRowSelectionChange: setRowSelection,
+    getPaginationRowModel: getPaginationRowModel(),
     state: {
       sorting,
       columnFilters,
@@ -178,7 +180,16 @@ export function ProductTable({ data }: ProductTable) {
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
+      <div className="flex items-center space-x-2 py-4 justify-between">
+        <div>
+          Valor total:{" "}
+          {new Intl.NumberFormat("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          }).format(
+            data.reduce((total, item) => total + item.value * item.amount, 0)
+          )}
+        </div>
         <div className="space-x-2">
           <Button
             className="bg-[#7450AC] hover:bg-[#7450AC]"
