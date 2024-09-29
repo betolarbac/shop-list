@@ -35,7 +35,7 @@ type ProductTable = {
 
 export function ProductTable({ data }: ProductTable) {
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
+  const [loadingProductId, setLoadingProductId] = useState<string | null>(null);
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -46,13 +46,13 @@ export function ProductTable({ data }: ProductTable) {
 
   const handleDeleteProduct = async (product: Product) => {
     try {
-      setLoading(true);
+      setLoadingProductId(product.id);
       await deleteProduct({ id: product.id });
       router.refresh();
     } catch (error) {
       console.error(error);
     } finally {
-      setLoading(false);
+      setLoadingProductId(null);
     }
   };
 
@@ -97,13 +97,14 @@ export function ProductTable({ data }: ProductTable) {
       enableHiding: false,
       cell: ({ row }) => {
         const product = row.original;
+        const isLoading = loadingProductId === product.id;
         return (
           <Button
             className="bg-transparent hover:bg-transparent"
             onClick={() => handleDeleteProduct(product)}
-            disabled={loading}
+            disabled={isLoading}
           >
-            {loading ? (
+            {isLoading ? (
               <LoaderCircle className="text-[#ff6465eb] w-4 h-4 mr-2 animate-spin" />
             ) : (
               <Trash2 className="text-[#ff6465eb] w-5 h-5" />
