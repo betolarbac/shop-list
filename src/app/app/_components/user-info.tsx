@@ -39,7 +39,7 @@ export function UserInfo() {
                   </Avatar>
                 </div>
 
-                <div>
+                <div className="hidden lg:block">
                   <h2 className="flex items-center justify-between text-base capitalize leading-5 line-clamp-1 text-slate-11">
                     {user?.fullName}
                     <ChevronsUpDown className="w-[18px] h-[18px]"/>
@@ -83,7 +83,7 @@ export function UserInfo() {
       ) : (
         <div className="flex gap-3 items-center py-2 px-3">
           <Skeleton className="h-8 w-8 rounded-full" />
-          <div className="space-y-2">
+          <div className="space-y-2 hidden lg:block">
             <Skeleton className="h-4 w-[152px]" />
             <Skeleton className="h-4 w-[152px]" />
           </div>

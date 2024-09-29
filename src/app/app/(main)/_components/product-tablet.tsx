@@ -11,7 +11,7 @@ import {
   getCoreRowModel,
   getSortedRowModel,
   useReactTable,
-  getPaginationRowModel
+  getPaginationRowModel,
 } from "@tanstack/react-table";
 
 import { Button } from "@/components/ui/button";
@@ -61,14 +61,14 @@ export function ProductTable({ data }: ProductTable) {
       accessorKey: "title",
       header: "Name",
       cell: ({ row }) => (
-        <div className="capitalize ">{row.getValue("title")}</div>
+        <div className="capitalize text-slate-12">{row.getValue("title")}</div>
       ),
     },
     {
       accessorKey: "amount",
       header: "Unidade",
       cell: ({ row }) => (
-        <div className="capitalize ">{row.getValue("amount")}</div>
+        <div className="capitalize text-slate-12">{row.getValue("amount")}</div>
       ),
     },
     {
@@ -85,7 +85,11 @@ export function ProductTable({ data }: ProductTable) {
           currency: "BRL",
         }).format(total);
 
-        return <div className="text-right font-medium">{formatted}</div>;
+        return (
+          <div className="text-right font-medium text-slate-12">
+            {formatted}
+          </div>
+        );
       },
     },
     {
@@ -182,13 +186,15 @@ export function ProductTable({ data }: ProductTable) {
       </div>
       <div className="flex items-center space-x-2 py-4 justify-between">
         <div>
-          Valor total:{" "}
-          {new Intl.NumberFormat("pt-BR", {
-            style: "currency",
-            currency: "BRL",
-          }).format(
-            data.reduce((total, item) => total + item.value * item.amount, 0)
-          )}
+          <p className="text-slate-12">
+            Valor total:{" "}
+            {new Intl.NumberFormat("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            }).format(
+              data.reduce((total, item) => total + item.value * item.amount, 0)
+            )}
+          </p>
         </div>
         <div className="space-x-2">
           <Button

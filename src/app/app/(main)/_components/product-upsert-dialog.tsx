@@ -65,10 +65,10 @@ export function ProductUpsertDialog() {
           Adicionar produto
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] bg-[#05050a]">
+      <DialogContent className="max-w-[345px] rounded-lg lg:max-w-[425px] bg-[#05050a]">
         <DialogHeader>
-          <DialogTitle>Adicionar Produto</DialogTitle>
-          <DialogDescription>
+          <DialogTitle className="text-slate-12">Adicionar Produto</DialogTitle>
+          <DialogDescription className="">
             Make changes to your profile here. Click save when you're done.
           </DialogDescription>
         </DialogHeader>
@@ -80,9 +80,9 @@ export function ProductUpsertDialog() {
               name="title"
               render={({ field }) => (
                 <FormItem className="grid gap-2">
-                  <FormLabel>Item</FormLabel>
+                  <FormLabel className="text-slate-12">Item</FormLabel>
                   <FormControl>
-                    <Input placeholder="Item" {...field} />
+                    <Input placeholder="Item" className="text-slate-12" {...field} />
                   </FormControl>
                 </FormItem>
               )}
@@ -93,9 +93,9 @@ export function ProductUpsertDialog() {
               name="amount"
               render={({ field }) => (
                 <FormItem className="grid gap-2">
-                  <FormLabel>Quantidade</FormLabel>
+                  <FormLabel className="text-slate-12">Quantidade</FormLabel>
                   <FormControl>
-                    <Input placeholder="Quantidade" type="number" {...field} />
+                    <Input placeholder="Quantidade" className="text-slate-12" type="number" {...field} />
                   </FormControl>
                 </FormItem>
               )}
@@ -106,14 +106,14 @@ export function ProductUpsertDialog() {
               name="value"
               render={({ field }) => (
                 <FormItem className="grid gap-2">
-                  <FormLabel>Valor</FormLabel>
+                  <FormLabel className="text-slate-12">Valor</FormLabel>
                   <FormControl>
-                    <Input placeholder="Valor" type="number" {...field} />
+                    <Input placeholder="Valor" className="text-slate-12" type="number" {...field} />
                   </FormControl>
                 </FormItem>
               )}
             />
-            <DialogFooter className="mt-8">
+            <DialogFooter className="mt-8 flex flex-row justify-center gap-3">
               <Button type="submit" disabled={loading}>
                 {loading ? (
                   <>
