@@ -105,7 +105,7 @@ export function ProductTable({ data }: ProductTable) {
             disabled={isLoading}
           >
             {isLoading ? (
-              <LoaderCircle className="text-[#ff6465eb] w-4 h-4 mr-2 animate-spin" />
+              <LoaderCircle className="text-[#ff6465eb] w-5 h-5 animate-spin" />
             ) : (
               <Trash2 className="text-[#ff6465eb] w-5 h-5" />
             )}

@@ -36,8 +36,8 @@ export function ProductUpsertDialog() {
     defaultValues: {
       id: "",
       title: "",
-      amount: 0,
-      value: 0,
+      amount: undefined,
+      value: undefined,
     },
   });
 
@@ -82,7 +82,7 @@ export function ProductUpsertDialog() {
                 <FormItem className="grid gap-2">
                   <FormLabel className="text-slate-12">Item</FormLabel>
                   <FormControl>
-                    <Input placeholder="Item" className="text-slate-12" {...field} />
+                    <Input placeholder="Item" className="text-slate-12" {...field} required />
                   </FormControl>
                 </FormItem>
               )}
@@ -95,7 +95,7 @@ export function ProductUpsertDialog() {
                 <FormItem className="grid gap-2">
                   <FormLabel className="text-slate-12">Quantidade</FormLabel>
                   <FormControl>
-                    <Input placeholder="Quantidade" className="text-slate-12" type="number" {...field} />
+                    <Input placeholder="Quantidade" className="text-slate-12" type="number" {...field} required/>
                   </FormControl>
                 </FormItem>
               )}
@@ -108,7 +108,7 @@ export function ProductUpsertDialog() {
                 <FormItem className="grid gap-2">
                   <FormLabel className="text-slate-12">Valor</FormLabel>
                   <FormControl>
-                    <Input placeholder="Valor" className="text-slate-12" type="number" {...field} />
+                    <Input placeholder="Valor" className="text-slate-12" type="number" {...field} required />
                   </FormControl>
                 </FormItem>
               )}
