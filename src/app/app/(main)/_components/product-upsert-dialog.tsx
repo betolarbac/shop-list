@@ -60,7 +60,7 @@ export function ProductUpsertDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="bg-[#7450AC] hover:bg-[#7450AC] text-xs lg:text-sm">
+        <Button className="bg-[#7450AC] hover:bg-[#7450AC] text-xs lg:text-sm px-2 lg:px-4">
           <Plus className="w-4 h-4 mr-2 lg:mr-3"/>
           Adicionar produto
         </Button>
