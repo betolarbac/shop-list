@@ -98,6 +98,7 @@ th:first-child {
   border-radius: 0.5rem 0px 0px 0.5rem;
   -webkit-border-radius: 0.5rem 0px 0px 0.5rem;
   -moz-border-radius: 0.5rem 0px 0px 0.5rem;
+  padding-left: 16px;
 }
 
 th:last-child {
@@ -141,4 +142,8 @@ input[type=number]::-webkit-outer-spin-button {
 
 tbody tr td:last-child {
   width: 50px;
+}
+
+tbody tr td:first-child {
+  padding-left: 16px;
 }

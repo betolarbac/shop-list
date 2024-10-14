@@ -59,14 +59,14 @@ export function ProductTable({ data }: ProductTable) {
   const columns: ColumnDef<Product>[] = [
     {
       accessorKey: "title",
-      header: "Name",
+      header: "Nome",
       cell: ({ row }) => (
         <div className="capitalize text-slate-12">{row.getValue("title")}</div>
       ),
     },
     {
       accessorKey: "amount",
-      header: "Unidade",
+      header: "Quantidade",
       cell: ({ row }) => (
         <div className="capitalize text-slate-12">{row.getValue("amount")}</div>
       ),
@@ -135,14 +135,14 @@ export function ProductTable({ data }: ProductTable) {
 
   return (
     <div className="w-full">
-      <div>
+      <div className="rounded-md border ">
         <Table>
-          <TableHeader className="h-8 rounded-md bg-[#ddeaf814]">
+          <TableHeader className="h-8 rounded-md bg-[#ddeaf814] border-b-[1px]">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead className="" key={header.id}>
+                    <TableHead className="bg-[#05050a]" key={header.id}>
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -178,7 +178,7 @@ export function ProductTable({ data }: ProductTable) {
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  Sem Produtos
                 </TableCell>
               </TableRow>
             )}
