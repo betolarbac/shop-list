@@ -38,6 +38,7 @@ model Expiration {
   id         String   @id @default(uuid())
   title      String
   expiration DateTime
+  amount     Int
   createdAt  DateTime @default(now())
   userId     String
   user       User     @relation(fields: [userId], references: [clerkId])
