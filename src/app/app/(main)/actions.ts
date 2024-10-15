@@ -38,8 +38,8 @@ export async function upsertProduct(input: z.infer<typeof upsertProductSchema>) 
     },
     create: {
       title: input.title || '',
-      amount: input.amount,
-      value: input.value,
+      amount: input.amount || 0,
+      value: input.value || 0,
       userId,
     }
   });
