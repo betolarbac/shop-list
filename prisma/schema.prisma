@@ -15,12 +15,13 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  email     String   @unique
-  name      String?
-  clerkId   String   @unique
-  createdAt DateTime @default(now())
-  todos     Products[]  
+  id         String       @id @default(uuid())
+  email      String       @unique
+  name       String?
+  clerkId    String       @unique
+  createdAt  DateTime     @default(now())
+  todos      Products[]
+  expiration Expiration[]
 }
 
 model Products {
@@ -28,9 +29,16 @@ model Products {
   title     String
   value     Float
   amount    Int
-  userId    String  
+  userId    String
   user      User     @relation(fields: [userId], references: [clerkId])
   createdAt DateTime @default(now())
 }
 
-
+model Expiration {
+  id         String   @id @default(uuid())
+  title      String
+  expiration DateTime
+  createdAt  DateTime @default(now())
+  userId     String
+  user       User     @relation(fields: [userId], references: [clerkId])
+}
