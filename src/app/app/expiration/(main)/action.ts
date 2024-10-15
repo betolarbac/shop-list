@@ -45,3 +45,37 @@ export async function upsertExpiration(
 
   return expiration;
 }
+
+export async function deleteExpiration(input: z.infer<typeof deleteExpirationSchema>) { 
+  const { userId } = auth();
+
+  if (!userId) {
+    throw new Error("Usuaário não autenticado");
+  }
+
+  const expiration = await prisma.expiration.delete({
+    where: {
+      id: input.id,
+    },
+
+    select: {
+      id: true,
+    }
+  });
+
+  if (!expiration) {
+    throw new Error("Expiração não encontrada");
+  }
+
+  await prisma.expiration.deleteMany({
+    where: {
+      id: input.id,
+      userId,
+    }
+  })
+
+  return {
+    error: null,
+    data: "Expiração excluída",
+  }
+}
