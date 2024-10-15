@@ -23,6 +23,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Expiration} from "../types";
 import { Trash2, LoaderCircle } from "lucide-react";
 import { deleteExpiration } from "../action";
@@ -49,6 +56,22 @@ export function ExpirationTable({ data }: ExpirationTable) {
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
+  const [expirationFilter, setExpirationFilter] = useState<string>("all");
+
+  const filteredData = React.useMemo(() => {
+    if (expirationFilter === "all") return data;
+    const now = dayjs();
+    switch (expirationFilter) {
+      case "expired":
+        return data.filter(item => dayjs(item.expiration).isBefore(now));
+      case "week":
+        return data.filter(item => dayjs(item.expiration).diff(now, 'day') <= 7 && dayjs(item.expiration).isAfter(now));
+      case "month":
+        return data.filter(item => dayjs(item.expiration).diff(now, 'day') <= 30 && dayjs(item.expiration).isAfter(now));
+      default:
+        return data;
+    }
+  }, [data, expirationFilter]);
 
   const handleDeleteExpiration = async (product: Expiration) => {
     try {
@@ -147,7 +170,7 @@ export function ExpirationTable({ data }: ExpirationTable) {
   ];
 
   const table = useReactTable({
-    data,
+    data: filteredData,
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -166,6 +189,19 @@ export function ExpirationTable({ data }: ExpirationTable) {
 
   return (
     <div className="w-full">
+      <div className="mb-4 flex justify-end">
+        <Select onValueChange={setExpirationFilter} defaultValue="all">
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Filtrar por validade" />
+          </SelectTrigger>
+          <SelectContent className="bg-[#05050a] ">
+            <SelectItem value="all">Todos</SelectItem>
+            <SelectItem value="expired">Vencidos</SelectItem>
+            <SelectItem value="week">Vence em 7 dias</SelectItem>
+            <SelectItem value="month">Vence em 30 dias</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
       <div className="rounded-md border ">
         <Table>
           <TableHeader className="h-8 rounded-md bg-[#ddeaf814] border-b-[1px]">
@@ -216,7 +252,7 @@ export function ExpirationTable({ data }: ExpirationTable) {
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center space-x-2 py-4 justify-between">
+      <div className="flex items-center space-x-2 py-4 justify-end">
 
         <div className="space-x-2">
           <Button
