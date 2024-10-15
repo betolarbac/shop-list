@@ -34,10 +34,12 @@ export async function upsertExpiration(
     },
     update: {
       title: input.title,
+      amount: input.amount,
       expiration: input.expiration,
     },
     create: {
       title: input.title,
+      amount: input.amount || 0,
       expiration: input.expiration,
       userId,
     },
