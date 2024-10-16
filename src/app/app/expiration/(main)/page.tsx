@@ -18,7 +18,7 @@ export default async function Page() {
             <ExpirationUpsertDialog />
           </div>
 
-          <div className="flex flex-col lg:flex-row items-center justify-start mx-auto max-w-5xl px-6 gap-4 lg:gap-8">
+          <div className="flex flex-col lg:flex-row items-stretch justify-start mx-auto max-w-5xl px-6 gap-4 lg:gap-8">
             <CardsProductExpiration />
           </div>
 
