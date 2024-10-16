@@ -1,8 +1,15 @@
 import { CalendarCheck, ShoppingBasket, CalendarClock } from "lucide-react";
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import dayjs from 'dayjs';
+import 'dayjs/locale/pt-br';
+
+
+dayjs.locale('pt-br');
 
 export function CardsProductExpiration() {
+  const currentMonth = dayjs().format('MMMM');
+  const nextMonth = dayjs().add(1, 'month').format('MMMM');
+
   return (
     <>
     <Card className="bg-[#05050a] w-full">
@@ -23,7 +30,7 @@ export function CardsProductExpiration() {
       </CardHeader>
       <CardContent>
         <div className="text-2xl font-bold">25</div>
-        <p className="text-xs text-muted-foreground">Outubro</p>
+        <p className="text-xs text-muted-foreground">{currentMonth}</p>
       </CardContent>
     </Card>
 
@@ -34,7 +41,7 @@ export function CardsProductExpiration() {
       </CardHeader>
       <CardContent>
         <div className="text-2xl font-bold">5</div>
-        <p className="text-xs text-muted-foreground">Novembro</p>
+        <p className="text-xs text-muted-foreground">{nextMonth}</p>
       </CardContent>
     </Card>
 
