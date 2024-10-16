@@ -18,7 +18,7 @@ import {
   FormLabel,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Plus, LoaderCircle } from 'lucide-react';
+import { CirclePlus, LoaderCircle } from 'lucide-react';
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { upsertProductSchema } from "../schema";
@@ -60,8 +60,8 @@ export function ProductUpsertDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="bg-[#7450AC] hover:bg-[#7450AC] text-xs lg:text-sm px-2 lg:px-4">
-          <Plus className="w-4 h-4 mr-2 lg:mr-3"/>
+        <Button className=" text-xs lg:text-sm px-2 lg:px-4">
+          <CirclePlus className="w-4 h-4 mr-2 lg:mr-3"/>
           Adicionar produto
         </Button>
       </DialogTrigger>

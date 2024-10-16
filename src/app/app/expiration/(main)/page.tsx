@@ -18,7 +18,7 @@ export default async function Page() {
               Produtos para vencer
             </h3>
 
-            <Button className="bg-[#7450AC] hover:bg-[#7450AC] text-xs lg:text-sm px-2 lg:px-4">
+            <Button className="text-xs lg:text-sm px-2 lg:px-4">
               <CirclePlus className="w-4 h-4 mr-2 lg:mr-3" />
               Cadastrar produto
             </Button>

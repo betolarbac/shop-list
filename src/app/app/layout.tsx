@@ -1,5 +1,6 @@
 import { PropsWithChildren } from "react";
 import { MainSidebar } from "./_components/main-sidebar";
+import { Header } from "./_components/header";
 
 export default function Layout({ children }: PropsWithChildren) {
   return (
@@ -7,7 +8,7 @@ export default function Layout({ children }: PropsWithChildren) {
       <MainSidebar />
       <main className="w-full">
         <div>
-          <div className="border-b border-[#252529] h-[60px] hidden lg:flex">Header</div>
+          <Header />
           {children}
         </div>
       </main>
