@@ -102,7 +102,7 @@ export function ExpirationTable({ data }: ExpirationTable) {
     },
     {
       accessorKey: "createdAt",
-      header: "Data de cadastro",
+      header: () => <div className="hidden lg:block">Data de cadastro</div>,
       cell: ({ row }) => { 
         const date = row.getValue("createdAt") as Date;
         const formattedDate = new Intl.DateTimeFormat("pt-BR", {
@@ -112,7 +112,7 @@ export function ExpirationTable({ data }: ExpirationTable) {
         }).format(date);
 
 
-      return <div className="text-slate-12">{formattedDate}</div>;
+      return <div className="text-slate-12 hidden lg:block">{formattedDate}</div>;
       },
     },
     {
@@ -191,7 +191,7 @@ export function ExpirationTable({ data }: ExpirationTable) {
     <div className="w-full">
       <div className="mb-4 flex justify-end">
         <Select onValueChange={setExpirationFilter} defaultValue="all">
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="w-[180px] text-slate-12">
             <SelectValue placeholder="Filtrar por validade" />
           </SelectTrigger>
           <SelectContent className="bg-[#05050a] ">
