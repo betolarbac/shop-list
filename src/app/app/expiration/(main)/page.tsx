@@ -1,8 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { CardsProductExpiration } from "./_components/cards-product-expiration";
-import { Plus } from "lucide-react";
+import { CirclePlus } from "lucide-react";
+import { getExpiration } from "./action";
+import { ExpirationTable } from "./_components/expiration-table";
 
 export default async function Page() {
+  const expiration = await getExpiration();
+
+
+
   return (
     <>
       <div className="scrollContainer h-[calc(100vh-60px)] overflow-auto pb-10">
@@ -13,13 +19,17 @@ export default async function Page() {
             </h3>
 
             <Button className="bg-[#7450AC] hover:bg-[#7450AC] text-xs lg:text-sm px-2 lg:px-4">
-              <Plus className="w-4 h-4 mr-2 lg:mr-3" />
+              <CirclePlus className="w-4 h-4 mr-2 lg:mr-3" />
               Cadastrar produto
             </Button>
           </div>
 
           <div className="flex flex-col lg:flex-row items-center justify-start mx-auto max-w-5xl px-6 gap-4 lg:gap-8">
             <CardsProductExpiration />
+          </div>
+
+          <div className="flex flex-col lg:flex-row items-center justify-start mx-auto max-w-5xl px-6 gap-4 lg:gap-8 pt-8">
+            <ExpirationTable data={expiration} />
           </div>
         </div>
       </div>
