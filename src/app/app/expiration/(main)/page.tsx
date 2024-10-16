@@ -1,13 +1,10 @@
-import { Button } from "@/components/ui/button";
 import { CardsProductExpiration } from "./_components/cards-product-expiration";
-import { CirclePlus } from "lucide-react";
 import { getExpiration } from "./action";
 import { ExpirationTable } from "./_components/expiration-table";
+import { ExpirationUpsertDialog } from "./_components/expiration-upsert-dialog";
 
 export default async function Page() {
   const expiration = await getExpiration();
-
-
 
   return (
     <>
@@ -18,10 +15,7 @@ export default async function Page() {
               Produtos para vencer
             </h3>
 
-            <Button className="text-xs lg:text-sm px-2 lg:px-4">
-              <CirclePlus className="w-4 h-4 mr-2 lg:mr-3" />
-              Cadastrar produto
-            </Button>
+            <ExpirationUpsertDialog />
           </div>
 
           <div className="flex flex-col lg:flex-row items-center justify-start mx-auto max-w-5xl px-6 gap-4 lg:gap-8">
