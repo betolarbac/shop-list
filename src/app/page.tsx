@@ -32,21 +32,19 @@ export default function Home() {
       </section>
 
       <section className="flex justify-center animate-fade-up animate-once container relative">
-        <div className="relative md:w-[1220px]">
-        <img
-          src="/hero.png"
-          alt="hero-section"
-          className="h-full w-full rounded-lg object-cover md:w-[1220px] border-4"
-          style={{
-            maskImage: `linear-gradient(to top, transparent, black 20%)`,
-          }}
-        />
+        <div className="relative md:w-[1220px] rounded-lg">
+          <img
+            src="/hero.png"
+            alt="hero-section"
+            className="h-full w-full rounded-lg object-cover md:w-[1220px] border-4"
+            style={{
+              maskImage: `linear-gradient(to top, transparent, black 20%)`,
+            }}
+          />
 
-        <BorderBeam duration={9} delay={9} />
+          <BorderBeam duration={9} delay={9} />
         </div>
       </section>
-
-      
     </main>
   );
 }
