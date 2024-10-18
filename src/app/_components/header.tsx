@@ -11,17 +11,17 @@ export function Header() {
         <Logo />
       </div>
 
-      <Button asChild variant={"link"} className="text-slate-">
+      <Button asChild variant={"link"} className="text-slate-12 hidden lg:block">
         <Link href="#">Recursos</Link>
       </Button>
 
-      <Button asChild variant={"link"} className="text-slate-">
+      <Button asChild variant={"link"} className="text-slate-12 hidden lg:block">
         <Link href="#">Planos</Link>
       </Button>
 
       <Button
         variant={"ghost"}
-        className="gap-1 transition duration-300 ease-in-out"
+        className="gap-1 transition duration-300 ease-in-out text-slate-12"
         asChild
       >
         <Link href="/auth/sign-in">
@@ -31,7 +31,7 @@ export function Header() {
       </Button>
 
       <Button
-        className="gap-1 transition duration-300 ease-in-out"
+        className="gap-1 transition duration-300 ease-in-out text-slate-12"
         variant={"outline"}
         asChild
       >
