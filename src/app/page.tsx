@@ -3,6 +3,7 @@ import Link from "next/link";
 import { LogIn } from "lucide-react";
 import { Header } from "./_components/header";
 import { BorderBeam } from "@/components/ui/border-beam";
+import Feature from "./_components/feature-section";
 
 export default function Home() {
   return (
@@ -32,7 +33,7 @@ export default function Home() {
       </section>
 
       <section className="flex justify-center animate-fade-up animate-once container relative">
-        <div className="relative md:w-[1220px] rounded-lg">
+        <div className="relative md:w-[1220px] md:h-[765px] rounded-lg">
           <img
             src="/hero.png"
             alt="hero-section"
@@ -42,9 +43,11 @@ export default function Home() {
             }}
           />
 
-          <BorderBeam duration={9} delay={9} />
+          <BorderBeam duration={6} delay={9}  />
         </div>
       </section>
+
+      <Feature />
     </main>
   );
 }
