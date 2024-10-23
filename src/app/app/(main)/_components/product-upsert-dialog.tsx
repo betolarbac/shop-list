@@ -69,7 +69,7 @@ export function ProductUpsertDialog() {
         <DialogHeader>
           <DialogTitle className="text-slate-12">Adicionar Produto</DialogTitle>
           <DialogDescription className="">
-            Make changes to your profile here. Click save when you're done.
+            Make changes to your profile here. Click save when you{"'"}re done.
           </DialogDescription>
         </DialogHeader>
 

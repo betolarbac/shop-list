@@ -9,9 +9,15 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { LogOut, CircleUser, Link2, SunMoon, ChevronsUpDown } from "lucide-react";
+import {
+  LogOut,
+  CircleUser,
+  Link2,
+  SunMoon,
+  ChevronsUpDown,
+} from "lucide-react";
 import { SignOutButton } from "@clerk/nextjs";
-import  Link from 'next/link'
+import Link from "next/link";
 
 export function UserInfo() {
   const { user, isLoaded } = useUser();
@@ -42,7 +48,7 @@ export function UserInfo() {
                 <div className="hidden lg:block">
                   <h2 className="flex items-center justify-between text-base capitalize leading-5 line-clamp-1 text-slate-11">
                     {user?.fullName}
-                    <ChevronsUpDown className="w-[18px] h-[18px]"/>
+                    <ChevronsUpDown className="w-[18px] h-[18px]" />
                   </h2>
                   <p className="text-sm line-clamp-1 text-slate-11">
                     {user?.emailAddresses[0]?.emailAddress}
@@ -60,17 +66,18 @@ export function UserInfo() {
               </DropdownMenuItem>
 
               <Link href="/">
-              <DropdownMenuItem className="flex h-8 cursor-pointer items-center gap-1.5 rounded px-2 text-sm font-semibold hover:bg-[#d3edf81d]">
-                <Link2 className="w-[18px] h-[18px]" />
-                Homepage
-              </DropdownMenuItem>
-
+                <DropdownMenuItem className="flex h-8 cursor-pointer items-center gap-1.5 rounded px-2 text-sm font-semibold hover:bg-[#d3edf81d]">
+                  <Link2 className="w-[18px] h-[18px]" />
+                  Homepage
+                </DropdownMenuItem>
               </Link>
 
-              <DropdownMenuItem className="flex h-8 cursor-pointer items-center gap-1.5 rounded px-2 text-sm font-semibold hover:bg-[#d3edf81d]">
-                <CircleUser className="w-[18px] h-[18px]" />
-                Perfil
-              </DropdownMenuItem>
+              <Link href="/app/profile">
+                <DropdownMenuItem className="flex h-8 cursor-pointer items-center gap-1.5 rounded px-2 text-sm font-semibold hover:bg-[#d3edf81d]">
+                  <CircleUser className="w-[18px] h-[18px]" />
+                  Perfil
+                </DropdownMenuItem>
+              </Link>
               <SignOutButton>
                 <DropdownMenuItem className="flex h-8 cursor-pointer items-center gap-1.5 rounded px-2 text-sm font-semibold hover:bg-[#d3edf81d]">
                   <LogOut className="w-[18px] h-[18px]" />
