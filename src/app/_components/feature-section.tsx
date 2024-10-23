@@ -29,7 +29,7 @@ export default function Feature() {
           <div className="lg:pr-8 lg:pt-4">
             <div className="lg:max-w-lg">
               <h2 className="text-base font-semibold leading-7 text-primary">Gerencie suas Compras</h2>
-              <p className="relative z-10 mb-6 max-w-4xl mx-auto text-3xl/tight font-bold md:text-3xl/tight md:mb-6 text-transparent bg-clip-text bg-gradient-to-br from-foreground via-foreground to-zinc-600">A melhor forma de gerenciar suas compras</p>
+              <p className="relative z-10 mb-6 max-w-4xl mx-auto text-3xl/tight font-bold md:text-3xl/tight md:mb-6 text-transparent bg-clip-text xl:bg-gradient-to-br from-foreground via-foreground to-zinc-600 text-white xl:text-transparent">A melhor forma de gerenciar suas compras</p>
           
               <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-muted-foreground  lg:max-w-none">
                 {features.map((feature) => (

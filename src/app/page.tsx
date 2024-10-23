@@ -1,9 +1,12 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { LogIn } from "lucide-react";
 import { Header } from "./_components/header";
 import { BorderBeam } from "@/components/ui/border-beam";
 import Feature from "./_components/feature-section";
+import { Footer } from "./_components/footer";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -14,7 +17,7 @@ export default function Home() {
         <span className="text-xs uppercase text-primary font-semibold mx-auto text-center rounded-md bg-primary/10 p-2 mb-2 inline-block">
           Gerencie seus produtos
         </span>
-        <h1 className="relative z-10 mb-6 max-w-4xl mx-auto text-4xl/tight font-bold text-center md:text-6xl/tight md:mb-6 text-transparent bg-clip-text bg-gradient-to-br from-foreground via-foreground to-zinc-600">
+        <h1 className="relative z-10 mb-6 max-w-4xl mx-auto text-4xl/tight font-bold text-center md:text-6xl/tight md:mb-6 text-transparent bg-clip-text xl:bg-gradient-to-br from-foreground via-foreground to-zinc-600 text-white xl:text-transparent">
           Organize suas compras e vencimentos com facilidade!
         </h1>
         <h2 className="relative z-10 max-w-2xl mx-auto text-center text-muted-foreground text-lg md:text-xl">
@@ -34,20 +37,24 @@ export default function Home() {
 
       <section className="flex justify-center animate-fade-up animate-once container relative">
         <div className="relative md:w-[1220px] md:h-[765px] rounded-lg">
-          <img
+          <Image
             src="/hero.png"
             alt="hero-section"
+            width={1220}
+            height={765}
             className="h-full w-full rounded-lg object-cover md:w-[1220px] border-4"
             style={{
               maskImage: `linear-gradient(to top, transparent, black 20%)`,
             }}
           />
 
-          <BorderBeam duration={6} delay={9}  />
+          <BorderBeam duration={6} delay={9} className="hidden xl:block" />
         </div>
       </section>
 
       <Feature />
+
+      <Footer />
     </main>
   );
 }
