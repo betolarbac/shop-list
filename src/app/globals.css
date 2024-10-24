@@ -107,12 +107,11 @@ th:last-child {
   -moz-border-radius: 0px 0.5rem 0.5rem 0px;
 }
 
-
 thead {
   background-color: transparent !important;
 }
 
-thead tr  {
+thead tr {
   border-bottom: none;
 }
 
@@ -124,14 +123,14 @@ tbody tr:hover {
   background-color: transparent !important;
 }
 
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield; /* Firefox */
   -webkit-appearance: none; /* Chrome, Safari, Edge, Opera */
   appearance: none;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button {
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
@@ -146,4 +145,70 @@ tbody tr td:first-child {
 
 body {
   overflow-x: hidden;
+}
+
+.cl-cardBox {
+  box-shadow: none;
+  border: 1px solid #1f2937;
+}
+
+.cl-cardBox .cl-navbar button {
+  color: #f1f7feb5;
+}
+
+.cl-cardBox .cl-navbar h1 {
+  color: #f1f7feb5;
+}
+
+.cl-cardBox .cl-scrollBox {
+  border-left: 1px solid #1f2937;
+}
+
+.cl-cardBox .cl-scrollBox h1 {
+  color: #f1f7feb5;
+}
+
+.cl-cardBox .cl-navbar,
+.cl-cardBox .cl-navbar div {
+  background-color: #05050a;
+  color: #f1f7feb5;
+  background: none;
+}
+
+.cl-cardBox .cl-scrollBox {
+  background-color: #05050a;
+  color: #f1f7feb5;
+}
+
+.cl-cardBox .cl-scrollBox p,
+.cl-cardBox .cl-scrollBox span,
+.cl-cardBox .cl-scrollBox button,
+.cl-cardBox .cl-scrollBox label {
+  color: #f1f7feb5;
+}
+
+.cl-profileSection .cl-actionCard {
+  background-color: #05050a;
+  box-shadow: none;
+  border: 1px solid #1f2937;
+}
+
+.cl-navbarMobileMenuRow {
+  background: #05050a;
+}
+
+@media screen and (max-width: 992px) {
+  .cl-cardBox .cl-scrollBox {
+    border-left: none;
+  }
+
+  .cl-navbarMobileMenuButton {
+    color: #f1f7feb5;
+  }
+
+  .cl-cardBox .cl-navbar {
+    background: #05050a;
+    border: 1px solid #1f2937;
+    height: fit-content;
+  }
 }
