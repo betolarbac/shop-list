@@ -47,7 +47,7 @@ export function UserInfo() {
 
                 <div className="hidden lg:block">
                   <h2 className="flex items-center justify-between text-base capitalize leading-5 line-clamp-1 text-slate-11">
-                    {user?.fullName}
+                    {user?.fullName || user?.username}
                     <ChevronsUpDown className="w-[18px] h-[18px]" />
                   </h2>
                   <p className="text-sm line-clamp-1 text-slate-11">
