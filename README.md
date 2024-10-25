@@ -24,15 +24,19 @@ Você precisa ter uma principais dependências instaladas:
 Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de ambiente no seu .env
 
 `CLERK_SECRET_KEY`
+
 `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`
 
 `NEXT_PUBLIC_CLERK_SIGN_IN_URL=/auth/sign-in`
+
 `NEXT_PUBLIC_CLERK_SIGN_UP_URL=/auth/sign-up`
+
 `NEXT_PUBLIC_CLERK_SIGN_IN_FORCE_REDIRECT_URL=/app`
 
 `NEXT_PUBLIC_APP_URL="http://localhost:3000"`
 
 `DATABASE_URL`
+
 `DIRECT_URL`
 
 ### Dependências locais
