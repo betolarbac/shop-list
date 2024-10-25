@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+<h1 align="center">
+  Shop List
+</h1>
 
-First, run the development server:
+Shop List é um projeto desenvolvido para simplificar o gerenciamento das compras de supermercado, permitindo a visualização em tempo real dos preços dos produtos e do valor total da compra, evitando surpresas ao finalizar no caixa e eliminando a necessidade de anotações em papel. Além disso, oferece a funcionalidade de registrar a validade dos produtos e monitorar aqueles que estão próximos do vencimento, possibilitando um aproveitamento mais eficiente.
+
+
+![Rocket Redis](https://ik.imagekit.io/lt1yvcbdq/layout.png?updatedAt=1729891127679)
+
+
+## Instalar e rodar o projeto
+
+Rodar o ShopList em sua máquina local é uma tarefa extremamente simples.
+
+### Dependências globais
+
+Você precisa ter uma principais dependências instaladas:
+
+- Node.js LTS v20 (ou qualquer versão superior)
+
+### Variáveis de Ambiente
+
+Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de ambiente no seu .env
+
+`CLERK_SECRET_KEY`
+`NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`
+
+`NEXT_PUBLIC_CLERK_SIGN_IN_URL=/auth/sign-in`
+`NEXT_PUBLIC_CLERK_SIGN_UP_URL=/auth/sign-up`
+`NEXT_PUBLIC_CLERK_SIGN_IN_FORCE_REDIRECT_URL=/app`
+
+`NEXT_PUBLIC_APP_URL="http://localhost:3000"`
+
+`DATABASE_URL`
+`DIRECT_URL`
+
+### Dependências locais
+
+Com o repositório clonado e as dependências globais instaladas, você pode instalar as dependências locais do projeto:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Rodar o projeto
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Para rodar o projeto localmente, basta executar o comando abaixo:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+yarn dev
+```
 
-## Learn More
+Isto irá automaticamente rodar serviços como Banco de dados (incluindo as Migrations)
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+http://localhost:3000/
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Rodar os testes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Há várias formas de rodar os testes dependendo do que você deseja fazer, mas o primeiro passo antes de fazer qualquer alteração no projeto é rodar os testes de forma geral para se certificar que tudo está passando como esperado. O comando abaixo irá rodar todos os serviços necessários, rodar os testes e em seguida derrubar todos os serviços.
 
-## Deploy on Vercel
+```bash
+npx cypress run test
+```
+### Stack utilizada
+**Front-end:** Next, TailwindCSS, React-hook-form, shadcnUI, zod
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Back-end** Next server actions,
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+**Teste** Cypress
