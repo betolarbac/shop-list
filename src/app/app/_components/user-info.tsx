@@ -45,12 +45,12 @@ export function UserInfo() {
                   </Avatar>
                 </div>
 
-                <div className="hidden lg:block">
-                  <h2 className="flex items-center justify-between text-base capitalize leading-5 line-clamp-1 text-slate-11">
+                <div className="hidden lg:block overflow-hidden">
+                  <h2 className="flex items-center justify-between text-base capitalize leading-5 text-slate-11 truncate">
                     {user?.fullName || user?.username}
-                    <ChevronsUpDown className="w-[18px] h-[18px]" />
+                    <ChevronsUpDown className="w-[18px] h-[18px] ml-1 flex-shrink-0" />
                   </h2>
-                  <p className="text-sm line-clamp-1 text-slate-11">
+                  <p className="text-sm text-slate-11 truncate ">
                     {user?.emailAddresses[0]?.emailAddress}
                   </p>
                 </div>

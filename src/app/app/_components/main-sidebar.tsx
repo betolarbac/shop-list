@@ -23,7 +23,7 @@ export function MainSidebar() {
 
   return (
     <>
-      <DashboardSidebar className="hidden lg:flex">
+      <DashboardSidebar className="hidden lg:flex max-w-[244px]">
         <DashboardSidebarHeader>
           <Logo />
         </DashboardSidebarHeader>
