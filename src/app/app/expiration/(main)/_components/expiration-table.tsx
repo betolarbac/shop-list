@@ -30,17 +30,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Expiration} from "../types";
-import { Trash2, LoaderCircle } from "lucide-react";
-import { deleteExpiration } from "../action";
+import { Expiration } from "../types";
+import { Trash2, LoaderCircle, Edit } from "lucide-react";
+import { deleteExpiration, upsertExpiration } from "../action";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import dayjs from 'dayjs';
-import 'dayjs/locale/pt-br';
-import relativeTime from 'dayjs/plugin/relativeTime'
+import dayjs from "dayjs";
+import "dayjs/locale/pt-br";
+import relativeTime from "dayjs/plugin/relativeTime";
+import { ExpirationEditDialog } from "./expiration-edit-dialog";
 
 dayjs.extend(relativeTime);
-dayjs.locale('pt-br');
+dayjs.locale("pt-br");
 
 type ExpirationTable = {
   data: Expiration[];
@@ -63,11 +64,19 @@ export function ExpirationTable({ data }: ExpirationTable) {
     const now = dayjs();
     switch (expirationFilter) {
       case "expired":
-        return data.filter(item => dayjs(item.expiration).isBefore(now));
+        return data.filter((item) => dayjs(item.expiration).isBefore(now));
       case "week":
-        return data.filter(item => dayjs(item.expiration).diff(now, 'day') <= 7 && dayjs(item.expiration).isAfter(now));
+        return data.filter(
+          (item) =>
+            dayjs(item.expiration).diff(now, "day") <= 7 &&
+            dayjs(item.expiration).isAfter(now)
+        );
       case "month":
-        return data.filter(item => dayjs(item.expiration).diff(now, 'day') <= 30 && dayjs(item.expiration).isAfter(now));
+        return data.filter(
+          (item) =>
+            dayjs(item.expiration).diff(now, "day") <= 30 &&
+            dayjs(item.expiration).isAfter(now)
+        );
       default:
         return data;
     }
@@ -103,47 +112,48 @@ export function ExpirationTable({ data }: ExpirationTable) {
     {
       accessorKey: "createdAt",
       header: () => <div className="hidden lg:block">Data de cadastro</div>,
-      cell: ({ row }) => { 
+      cell: ({ row }) => {
         const date = row.getValue("createdAt") as Date;
         const formattedDate = new Intl.DateTimeFormat("pt-BR", {
-          day: '2-digit',
-          month: '2-digit',
-          year: 'numeric',
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
         }).format(date);
 
-
-      return <div className="text-slate-12 hidden lg:block">{formattedDate}</div>;
+        return (
+          <div className="text-slate-12 hidden lg:block">{formattedDate}</div>
+        );
       },
     },
     {
       accessorKey: "expiration",
       header: "Data de validade",
-      cell: ({ row }) => { 
+      cell: ({ row }) => {
         const date = dayjs(row.getValue("expiration"));
-        const formattedDate = date.format('DD/MM/YYYY');
-        const daysUntilExpiration = date.diff(dayjs(), 'day')
+        const formattedDate = date.format("DD/MM/YYYY");
+        const daysUntilExpiration = date.diff(dayjs(), "day");
 
-      let statusColor = 'text-green-500';
-      if (daysUntilExpiration <= 30) {
-        statusColor = 'text-yellow-500';
-      }
-      if (daysUntilExpiration <= 7) {
-        statusColor = 'text-red-500';
-      }
-      if (daysUntilExpiration < 0) {
-        statusColor = 'text-gray-500';
-      }
+        let statusColor = "text-green-500";
+        if (daysUntilExpiration <= 30) {
+          statusColor = "text-yellow-500";
+        }
+        if (daysUntilExpiration <= 7) {
+          statusColor = "text-red-500";
+        }
+        if (daysUntilExpiration < 0) {
+          statusColor = "text-gray-500";
+        }
 
-      return (
-        <div className="flex flex-col">
-          <span className="text-slate-12">{formattedDate}</span>
-          <span className={`text-sm ${statusColor}`}>
-            {daysUntilExpiration >= 0
-              ? `Vence em ${date.fromNow(true)}`
-              : `Venceu há ${date.fromNow(true)}`}
-          </span>
-        </div>
-      );
+        return (
+          <div className="flex flex-col">
+            <span className="text-slate-12">{formattedDate}</span>
+            <span className={`text-sm ${statusColor}`}>
+              {daysUntilExpiration >= 0
+                ? `Vence em ${date.fromNow(true)}`
+                : `Venceu há ${date.fromNow(true)}`}
+            </span>
+          </div>
+        );
       },
     },
     {
@@ -164,6 +174,16 @@ export function ExpirationTable({ data }: ExpirationTable) {
               <Trash2 className="text-[#ff6465eb] w-5 h-5" />
             )}
           </Button>
+        );
+      },
+    },
+    {
+      id: "edit-actions",
+      enableHiding: false,
+      cell: ({ row }) => {
+        const product = row.original;
+        return (
+          <ExpirationEditDialog {...product} />
         );
       },
     },
@@ -253,7 +273,6 @@ export function ExpirationTable({ data }: ExpirationTable) {
         </Table>
       </div>
       <div className="flex items-center space-x-2 py-4 justify-end">
-
         <div className="space-x-2">
           <Button
             className="bg-[#7450AC] hover:bg-[#7450AC]"
