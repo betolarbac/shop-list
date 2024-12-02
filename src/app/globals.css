@@ -135,9 +135,7 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
 }
 
-tbody tr td:last-child {
-  width: 50px;
-}
+
 
 tbody tr td:first-child {
   padding-left: 16px;
