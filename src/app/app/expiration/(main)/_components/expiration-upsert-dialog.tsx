@@ -79,7 +79,8 @@ export function ExpirationUpsertDialog() {
         <DialogHeader>
           <DialogTitle className="text-slate-12">Adicionar Produto</DialogTitle>
           <DialogDescription className="">
-            Make changes to your profile here. Click save when you're done.
+            Adicione um novo produto ao seu estoque. Insira o nome do produto, a
+            quantidade e a data de validade.
           </DialogDescription>
         </DialogHeader>
 
@@ -147,7 +148,10 @@ export function ExpirationUpsertDialog() {
                           </Button>
                         </FormControl>
                       </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0 bg-[#05050a]" align="start">
+                      <PopoverContent
+                        className="w-auto p-0 bg-[#05050a]"
+                        align="start"
+                      >
                         <Calendar
                           mode="single"
                           selected={field.value}
