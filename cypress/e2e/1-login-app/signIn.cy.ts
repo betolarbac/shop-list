@@ -1,4 +1,4 @@
-import { clerkSignIn } from "@clerk/testing/cypress";
+
 
 describe("Teste de login com email e senha", () => {
   it("Check Clerk loaded", () => {
