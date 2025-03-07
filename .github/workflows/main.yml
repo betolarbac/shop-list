@@ -1,0 +1,25 @@
+name: Run PostgreSQL Query Daily
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch: 
+
+jobs:
+  run-query:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Instalar o PostgreSQL Client
+        run: sudo apt-get install -y postgresql-client
+
+      - name: Executar Query no Banco
+        env:
+          PGHOST: ${{ secrets.PGHOST }}
+          PGUSER: ${{ secrets.PGUSER }}
+          PGPASSWORD: ${{ secrets.PGPASSWORD }}
+          PGDATABASE: ${{ secrets.PGDATABASE }}
+        run: |
+          psql -h $PGHOST -U $PGUSER -d $PGDATABASE -c 'SELECT * FROM "public"."_prisma_migrations" LIMIT 10;'
