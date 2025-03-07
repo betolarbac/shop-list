@@ -2,7 +2,7 @@ name: Run PostgreSQL Query Daily
 
 on:
   schedule:
-    - cron: '0 3 * * *'
+    - cron: '0 3 * * *' 
   workflow_dispatch: 
 
 jobs:
@@ -15,6 +15,16 @@ jobs:
       - name: Instalar o PostgreSQL Client
         run: sudo apt-get install -y postgresql-client
 
+      - name: Debug Environment Variables
+        run: |
+          echo "PGHOST=$PGHOST"
+          echo "PGUSER=$PGUSER"
+          echo "PGDATABASE=$PGDATABASE"
+        env:
+          PGHOST: ${{ secrets.PGHOST }}
+          PGUSER: ${{ secrets.PGUSER }}
+          PGDATABASE: ${{ secrets.PGDATABASE }}
+
       - name: Executar Query no Banco
         env:
           PGHOST: ${{ secrets.PGHOST }}
@@ -22,4 +32,4 @@ jobs:
           PGPASSWORD: ${{ secrets.PGPASSWORD }}
           PGDATABASE: ${{ secrets.PGDATABASE }}
         run: |
-          psql -h $PGHOST -U $PGUSER -d $PGDATABASE -c 'SELECT * FROM "public"."_prisma_migrations" LIMIT 10;'
+          PGPASSWORD=$PGPASSWORD psql -h "$PGHOST" -U "$PGUSER" -d "$PGDATABASE" -c 'SELECT * FROM "public"."_prisma_migrations" LIMIT 10;'
